@@ -5,6 +5,8 @@ This lua is for Gmod, TTT.
 Its created to spawn your weapons of choice instead of default ones.
 For example if you use the example config + all fas2 weapons, on every map every weapon is a fas2 weapon.
 
+https://steamcommunity.com/sharedfiles/filedetails/?id=1517302772
+
 ## installation
 The lua has to be in "server/garrysmod/lua/autorun/server/jusito_ttt_entity_replace.lua"
 The config has to be "server/garrysmod/data/jusito_ttt_entity_replace/config.txt"

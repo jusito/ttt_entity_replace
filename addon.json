@@ -1,0 +1,14 @@
+{
+	"title"		:	"TTT entity replacer",
+	"type"		:	"ServerContent",
+	"tags"		:	[ "fun" ],
+	"ignore"	:
+	[
+		".git/*",
+		".project",
+		"config.txt.example*",
+		"LICENSE",
+		"README.md",
+		"icon.jpg"
+	]
+}
