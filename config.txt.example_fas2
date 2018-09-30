@@ -70,7 +70,7 @@ end
 source
 	weapon_ttt_ammocrate
 target
-	weapon_ttt_fas2_ammobox
+	fas2_thrown_ammobox
 end
 
 #melee
@@ -199,5 +199,45 @@ target
 	ttt_fas2_ammo_762x51
 	ttt_fas2_ammo_12gauge
 	ttt_fas2_ammo_9x19
-	weapon_ttt_fas2_ammobox
+	fas2_thrown_ammobox
+end
+
+#just remove others
+source
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_50ae
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_10x25
+	ttt_fas2_ammo_23x75
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_45acp
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_50bmg
+	ttt_fas2_ammo_380acp
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x18
+	ttt_fas2_ammo_357sig
+	ttt_fas2_ammo_9x18
+	ttt_fas2_ammo_454casull
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_9x19
+target
 end
