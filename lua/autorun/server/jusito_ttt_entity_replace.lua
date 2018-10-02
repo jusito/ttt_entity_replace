@@ -1,7 +1,8 @@
 
 -- region DECLERATION
-local DEBUG_MODE = false
+local DEBUG_MODE = true
 local MOD_NAME = 'jusito_ttt_entity_replace'
+local MAX_RECURSION = 5
 
 -- path is relative to data dir
 local FILE_CONFIG = MOD_NAME .. '/config.txt'
@@ -283,9 +284,9 @@ local function replaceEntity(oldEntity, newEntityClassName)
     timerTable[#timerTable + 1] = current
     
     if timerActive then
-      if DEBUG_MODE then uprint("replaceEntity", "skipped timer") end
+      if DEBUG_MODE then uprint("replaceEntity", "timer already active") end
     elseif (SERVER) then
-      if DEBUG_MODE then uprint("replaceEntity", "set timer") end
+      if DEBUG_MODE then uprint("replaceEntity", "timer set active") end
       timerActive = true
       timer.Simple( 0, function() jusitoReplaceEntityTimed() end )
     end
@@ -313,15 +314,16 @@ function jusitoReplaceEntityTimed()
       oldEntity:SetSolid(SOLID_NONE)
       newEntity = ents.Create( newEntityClassName )
       
-      -- maybe class name is spelled wrong or wrong registered, we don't know
-      if newEntity ~= nil then
+    if DEBUG_MODE then uprint( "replaceEntityTimed", "created " .. tostring(newEntity) .. " null? " .. tostring(newEntity ~= nil) .. " valid? " .. tostring(IsValid(newEntity))) end
+      -- maybe class name is spelled wrong or wrong registered, or the user wanted an invalid name, we don't know
+      if (IsValid(newEntity) and newEntity ~= nil) then
         -- in some maps position maybe not set?
         -- https://github.com/Facepunch/garrysmod/blob/master/garrysmod/gamemodes/terrortown/gamemode/ent_replace.lua (ReplaceSingle 11-13)
         newEntity:SetPos(oldEntity:GetPos())
         newEntity:SetAngles(oldEntity:GetAngles())
       end
       SafeRemoveEntity(oldEntity)
-      if newEntity ~= nil then
+      if (IsValid(newEntity) and newEntity ~= nil) then
         newEntity:Spawn()
         newEntity:Activate()
         newEntity:PhysWake()
@@ -330,7 +332,7 @@ function jusitoReplaceEntityTimed()
     end
   end
   
-  if DEBUG_MODE then uprint( "replaceEntityTimed", "done" ) end
+  if DEBUG_MODE then uprint( "replaceEntityTimed", "done, timer set NOT active" ) end
   timerTable = {}
   timerActive = false
 end
@@ -366,8 +368,66 @@ end)
 
 
 
+local function findFinalMapping( start, recursionLevel )
+  DEBUG_MODE = true
+  if DEBUG_MODE then uprint( "findFinalMapping", "=> find mapping for " .. tostring(start) .. " current Level (0 = last) " .. tostring(recursionLevel) ) end
+  
+  local found = false
+  local msg = tostring(start)
+  local sourceTable = {}
+  local targetTable = {}
+  local newEntityClassName = start
+  
+  -- for every try
+  for r=1,recursionLevel,1 do
+    found = false
+    
+    -- for every mapping
+    for k, mapping in pairs(config) do
+      sourceTable = mapping[LINE_SOURCE]
+      targetTable = mapping[LINE_TARGET]
+  
+      -- check if one source is matching
+      for km, class in pairs(sourceTable) do
+        -- if so...
+        if ((class) == (newEntityClassName)) then
+          -- ... choose random target
+          newEntityClassName = targetTable[ math.random( #targetTable )]
+          found = true
+          msg = msg .. "->" .. tostring(newEntityClassName)
+          break
+        end
+      end
+  
+      if found == true then
+        break
+      end
+    end
+    
+    if found == false then
+      break
+    end
+  end
+  
+  if newEntityClassName == start then
+    if DEBUG_MODE then uprint( "findFinalMapping", "<= find no mapping for " .. tostring(start) ) end
+    DEBUG_MODE = false
+    return nil
+  else
+    if DEBUG_MODE then uprint( "findFinalMapping", "<= find mapping for " .. tostring(msg) ) end
+    DEBUG_MODE = false
+    return newEntityClassName
+  end
+end
+
+
+
+
+
+
+
 local function findReplacement( ent )
-  if DEBUG_MODE then uprint( "findReplacement", "find replacement for " .. tostring(ent)) end
+  if DEBUG_MODE then uprint( "findReplacement", "find replacement for " .. tostring(ent) .. "(if next is done = no mapping = untouched)") end
   
   local newEntityClassName = ""
   local sourceTable = {}
@@ -379,29 +439,17 @@ local function findReplacement( ent )
   end
   
   if ent:IsValid() and config ~= nil then
-    -- for every mapping
-    for k, mapping in pairs(config) do
---      if DEBUG_MODE then uprint( "findReplacement", "processing mappin " .. tostring(k)) end
-      sourceTable = mapping[LINE_SOURCE]
-      targetTable = mapping[LINE_TARGET]
-
-      -- check if one source is matching
-      for km, class in pairs(sourceTable) do
-        -- if so, replace
-        if ((class) == (ent:GetClass())) then
-          -- with one ent. of targetTable (nil = remove)
-          newEntityClassName = targetTable[ math.random( #targetTable )]
-          if DEBUG_MODE then uprint( "findReplacement", "match! Mapping to " .. newEntityClassName) end
-          -- todo check if classname exists => if not retry
-          replaceEntity(ent, newEntityClassName)
-        end
-      end
+  newEntityClassName = findFinalMapping( (ent:GetClass()), MAX_RECURSION, "")
+  
+    if newEntityClassName ~= nil then
+      replaceEntity(ent, newEntityClassName)
     end
   end
-  
+    
   if DEBUG_MODE then uprint( "findReplacement", "<= done") end
 end
 -- hook.Add( HOOK_REPLACE, HOOK_REPLACE_ID, findReplacement) => after map start!
+
 
 
 
@@ -462,7 +510,7 @@ function ProcessReplacing()
     for k, mapping in pairs(config) do
       sourceTable = mapping[LINE_SOURCE]
       targetTable = mapping[LINE_TARGET]
-      if DEBUG_MODE then uprint( "ProcessReplacing", " [" .. tostring(k) .. " " .. tostring(#sourceTable) .. " -> " .. tostring(#targetTable))  end
+      if DEBUG_MODE then uprint( "ProcessReplacing", "Checking mapping number: " .. tostring(k) .. " with " .. tostring(#sourceTable) .. " sources & " .. tostring(#targetTable) .. " targets")  end
 
       -- check if any of source entities is found
       for km, class in pairs(sourceTable) do
@@ -473,9 +521,10 @@ function ProcessReplacing()
           -- ... every found entity ...
           for k, currentEntity in pairs(foundEntities) do
             -- with one ent. of targetTable (nil = remove)
-            newEntityClassName = targetTable[ math.random( #targetTable )]
-            -- todo check if classname exists => if not retry
-            replaceEntity(currentEntity, newEntityClassName)
+            newEntityClassName = findFinalMapping( (currentEntity:GetClass()), MAX_RECURSION, "" )
+            if newEntityClassName ~= nil then
+              replaceEntity(currentEntity, newEntityClassName)
+            end
           end
         end
       end
@@ -483,9 +532,9 @@ function ProcessReplacing()
   else
     if DEBUG_MODE then uprint( "ProcessReplacing", "couldn't load config" ) end
   end
-  
+
   hook.Add( HOOK_REPLACE, HOOK_REPLACE_ID, findReplacement)
-  
+
   uprint( "ProcessReplacing", "replacing done" )
 end
 hook.Add( HOOK_REPLACE_PREGAME, HOOK_REPLACE_PREGAME_ID, ProcessReplacing)
