@@ -1,6 +1,6 @@
 
 -- region DECLERATION
-local DEBUG_MODE = true
+local DEBUG_MODE = false
 local MOD_NAME = 'jusito_ttt_entity_replace'
 local MAX_RECURSION = 5
 
@@ -369,7 +369,6 @@ end)
 
 
 local function findFinalMapping( start, recursionLevel )
-  DEBUG_MODE = true
   if DEBUG_MODE then uprint( "findFinalMapping", "=> find mapping for " .. tostring(start) .. " current Level (0 = last) " .. tostring(recursionLevel) ) end
   
   local found = false
@@ -411,11 +410,9 @@ local function findFinalMapping( start, recursionLevel )
   
   if newEntityClassName == start then
     if DEBUG_MODE then uprint( "findFinalMapping", "<= find no mapping for " .. tostring(start) ) end
-    DEBUG_MODE = false
     return nil
   else
     if DEBUG_MODE then uprint( "findFinalMapping", "<= find mapping for " .. tostring(msg) ) end
-    DEBUG_MODE = false
     return newEntityClassName
   end
 end
