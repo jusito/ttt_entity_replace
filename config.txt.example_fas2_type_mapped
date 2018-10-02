@@ -1,0 +1,243 @@
+#place this file in garrysmod/data/jusito_ttt_entity_replace/config.txt
+#this config takes care, that every known default weapon is replaced with its fas2 weapon
+
+#random weapon
+source
+	ttt_random_weapon
+	ttt_random_ammo
+target
+	weapon_ttt_fas2_m67
+	weapon_ttt_fas2_ots33
+	weapon_ttt_fas2_p226
+	weapon_ttt_fas2_ragingbull
+	weapon_ttt_fas2_deagle
+	weapon_ttt_fas2_glock20
+	weapon_ttt_fas2_m1911
+	weapon_ttt_fas2_rem870
+	weapon_ttt_fas2_ks23
+	weapon_ttt_fas2_toz34
+	weapon_ttt_fas2_uzi
+	weapon_ttt_fas2_mac11
+	weapon_ttt_fas2_mp5k
+	weapon_ttt_fas2_mp5a5
+	weapon_ttt_fas2_mp5sd6
+	weapon_ttt_fas2_pp19
+	weapon_ttt_fas2_ak12
+	weapon_ttt_fas2_ak47
+	weapon_ttt_fas2_ak74
+	weapon_ttt_fas2_m4a1
+	weapon_ttt_fas2_g36c
+	weapon_ttt_fas2_famas
+	weapon_ttt_fas2_m14
+	weapon_ttt_fas2_sg550
+	weapon_ttt_fas2_an94
+	weapon_ttt_fas2_galil
+	weapon_ttt_fas2_g3
+	weapon_ttt_fas2_rk95
+	weapon_ttt_fas2_rpk
+	weapon_ttt_fas2_sg552
+	weapon_ttt_fas2_m21
+	weapon_ttt_fas2_m24
+	weapon_ttt_fas2_m82
+	weapon_ttt_fas2_sks
+	weapon_ttt_fas2_sr25
+end
+
+# Items which doesn't work correct 
+source
+	weapon_ttt_fas2_m3s90
+	weapon_ttt_fas2_m79
+target
+	ttt_random_weapon
+end
+source
+	ttt_fas2_ammo_m67
+	ttt_fas2_ammo_40mm
+target
+	ttt_random_ammo
+end
+
+# map grenades
+source
+	weapon_ttt_confgrenade
+	weapon_zm_molotov
+	weapon_ttt_smokegrenade
+target
+	weapon_ttt_fas2_m67
+end
+
+# map big ammocrate
+source
+	weapon_ttt_ammocrate
+target
+	fas2_thrown_ammobox
+end
+
+#melee
+source
+	weapon_ttt_knife
+target
+	weapon_ttt_fas2_machete
+	weapon_ttt_fas2_dv2
+end
+
+#pistols
+source
+	weapon_ttt_glock
+	weapon_zm_pistol
+	weapon_zm_revolver
+target
+	weapon_ttt_fas2_ots33
+	weapon_ttt_fas2_p226
+	weapon_ttt_fas2_ragingbull
+	weapon_ttt_fas2_deagle
+	weapon_ttt_fas2_glock20
+	weapon_ttt_fas2_m1911
+end
+
+#shotgun
+source
+	weapon_zm_shotgun
+	weapon_zm_sledge
+target
+	weapon_ttt_fas2_rem870
+	weapon_ttt_fas2_ks23
+	weapon_ttt_fas2_toz34
+end
+
+#smg
+source
+	weapon_zm_mac10
+target
+	weapon_ttt_fas2_uzi
+	weapon_ttt_fas2_mac11
+	weapon_ttt_fas2_mp5k
+	weapon_ttt_fas2_mp5a5
+	weapon_ttt_fas2_mp5sd6
+	weapon_ttt_fas2_pp19
+end
+
+#auto rifles
+source
+	weapon_ttt_m16
+target
+	weapon_ttt_fas2_ak12
+	weapon_ttt_fas2_ak47
+	weapon_ttt_fas2_ak74
+	weapon_ttt_fas2_m4a1
+	weapon_ttt_fas2_g36c
+	weapon_ttt_fas2_famas
+	weapon_ttt_fas2_m14
+	weapon_ttt_fas2_sg550
+	weapon_ttt_fas2_an94
+	weapon_ttt_fas2_galil
+	weapon_ttt_fas2_g3
+	weapon_ttt_fas2_rk95
+	weapon_ttt_fas2_rpk
+	weapon_ttt_fas2_sg552
+end
+
+#sniper rifles
+source
+	weapon_zm_rifle
+target
+	weapon_ttt_fas2_m21
+	weapon_ttt_fas2_m24
+	weapon_ttt_fas2_m82
+	weapon_ttt_fas2_sks
+	weapon_ttt_fas2_sr25
+end
+
+#replace ammo
+source
+	weapon_ttt_ammocrate
+	item_ammo_pistol_ttt
+	item_ammo_revolver_ttt
+	item_ammo_smg1_ttt
+	item_ammo_357_ttt
+	item_box_buckshot_ttt
+target
+	ttt_random_ammo
+end
+
+#replace ammo
+source
+	ttt_random_ammo
+target
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_50ae
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_10x25
+	ttt_fas2_ammo_23x75
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_45acp
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_50bmg
+	ttt_fas2_ammo_380acp
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x18
+	ttt_fas2_ammo_357sig
+	ttt_fas2_ammo_9x18
+	ttt_fas2_ammo_454casull
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_9x19
+	fas2_thrown_ammobox
+end
+
+#just remove others
+source
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_545x39
+	ttt_fas2_ammo_50ae
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_10x25
+	ttt_fas2_ammo_23x75
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_45acp
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_50bmg
+	ttt_fas2_ammo_380acp
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x19
+	ttt_fas2_ammo_9x18
+	ttt_fas2_ammo_357sig
+	ttt_fas2_ammo_9x18
+	ttt_fas2_ammo_454casull
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_556x45
+	ttt_fas2_ammo_762x39
+	ttt_fas2_ammo_762x51
+	ttt_fas2_ammo_12gauge
+	ttt_fas2_ammo_9x19
+target
+end
