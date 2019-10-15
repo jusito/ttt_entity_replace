@@ -1,6 +1,6 @@
 #place this file in garrysmod/data/jusito_ttt_entity_replace/config.txt
 #this config takes care, that every known default weapon is replaced with its fas2 weapon
-	
+
 #random weapon
 source
 	ttt_random_weapon
@@ -230,6 +230,7 @@ source
 	weapon_ttt_fas2_m3s90
 	weapon_ttt_fas2_m79
 	weapon_ttt_fas2_ots33
+	weapon_ttt_fas2_machete
 target
 	ttt_random_weapon
 end
@@ -247,13 +248,6 @@ source
 	weapon_ttt_smokegrenade
 target
 	weapon_ttt_fas2_m67
-end
-
-# map big ammocrate
-source
-	weapon_ttt_ammocrate
-target
-	ttt_random_ammo
 end
 
 #melee
@@ -275,6 +269,7 @@ end
 #shotgun
 source
 	weapon_zm_sledge
+	weapon_zm_shotgun
 target
 	ttt_random_weapon
 end
@@ -318,39 +313,49 @@ source
 	weapon_ttt_fas2_ammobox
 	ttt_fas2_ammo_545x39
 	ttt_fas2_ammo_762x39
-	ttt_fas2_ammo_545x39
-	ttt_fas2_ammo_545x39
 	ttt_fas2_ammo_50ae
 	ttt_fas2_ammo_556x45
 	ttt_fas2_ammo_762x51
-	ttt_fas2_ammo_556x45
-	ttt_fas2_ammo_556x45
 	ttt_fas2_ammo_10x25
 	ttt_fas2_ammo_23x75
-	ttt_fas2_ammo_762x51
 	ttt_fas2_ammo_45acp
-	ttt_fas2_ammo_762x51
-	ttt_fas2_ammo_762x51
 	ttt_fas2_ammo_12gauge
-	ttt_fas2_ammo_556x45
 	ttt_fas2_ammo_50bmg
 	ttt_fas2_ammo_380acp
 	ttt_fas2_ammo_9x19
-	ttt_fas2_ammo_9x19
-	ttt_fas2_ammo_9x19
 	ttt_fas2_ammo_9x18
 	ttt_fas2_ammo_357sig
-	ttt_fas2_ammo_9x18
 	ttt_fas2_ammo_454casull
-	ttt_fas2_ammo_12gauge
-	ttt_fas2_ammo_762x39
-	ttt_fas2_ammo_762x39
-	ttt_fas2_ammo_556x45
-	ttt_fas2_ammo_556x45
-	ttt_fas2_ammo_762x39
-	ttt_fas2_ammo_762x51
-	ttt_fas2_ammo_12gauge
-	ttt_fas2_ammo_9x19
+target
+	ttt_random_ammo
+end
+
+#sometimes in, but shouldnt
+source
+	weapon_ttt_fas2_famas
+	weapon_ttt_fas2_g3
+	weapon_ttt_fas2_glock20
+	weapon_ttt_fas2_m14
+	weapon_ttt_fas2_m21
+	weapon_ttt_fas2_m24
+	weapon_ttt_fas2_m4a1
+	weapon_ttt_fas2_mac11
+	weapon_ttt_fas2_mp5k
+	weapon_ttt_fas2_p226
+	weapon_ttt_fas2_rem870
+	weapon_ttt_fas2_rpk
+	weapon_ttt_fas2_sg550
+	weapon_ttt_fas2_sg552
+	weapon_ttt_fas2_toz34
+	weapon_ttt_fas2_uzi
+	weapon_ttt_flaregun
+target
+	ttt_random_weapon
+end
+source
+	ttt_fas2_ammo_quikclots
+	ttt_fas2_ammo_hemostats
+	ttt_fas2_ammo_bandages
 target
 	ttt_random_ammo
 end
